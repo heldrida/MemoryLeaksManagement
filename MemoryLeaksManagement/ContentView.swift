@@ -18,6 +18,9 @@ struct ContentView: View {
             Button("Retain Cycle problem") {
                 self.retainCycleProblem()
             }
+            Button("Retain Cycle fix") {
+                self.retainCycleFix()
+            }
         }
     }
     func deallocateMother () {
@@ -40,6 +43,16 @@ struct ContentView: View {
         
         // We end up not having a way to access the inner property instances
         // and that's the problem
+    }
+    func retainCycleFix () {
+        var gift: Box? = Box()
+        var candies: BoxContent? = BoxContent()
+        
+        gift?.boxContent = candies
+        candies?.box = gift
+        
+        gift = nil
+        candies = nil
     }
 }
 
