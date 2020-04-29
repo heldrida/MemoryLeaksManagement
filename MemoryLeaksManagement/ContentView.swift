@@ -10,7 +10,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        var mother: Parent? = Parent(name: "Maria")
+        return VStack {
+            Text("Memory Leaks management!")
+            Button("Deallocate \(mother?.name ?? "unknown")") {
+                mother = nil
+            }
+        }
     }
 }
 
